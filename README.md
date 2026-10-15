@@ -23,7 +23,7 @@
 * **Dynamic Kernel Module Generator:** Automatically builds dynamic Makefiles to compile and load kernel-level bugs
   * `ko1.ko` – Kernel Warning (`WARN()`)
   * `ko2.ko` – Kernel Bug (`BUG()`)
-  * `ko3.ko` – Kernel Oops (`oops_enter / die`)
+  * `ko3.ko` – Kernel Oops (`Divide by zero`)
   * `ko4.ko` – Kernel Panic (`panic()`)
 * **Secure Boot Check:** Built-in parser for EFI variables to verify Secure Boot status before attempting kernel module insertions.
 
