@@ -3,7 +3,7 @@
 
 /*
  * LinCrash (Short for Linux Crash)
- * Ver. 1.0.0b (Major 0, Minor 0, Patch 0, beta)
+ * Ver. 1.0.1b (Major 0, Minor 0, Patch 1, beta)
  * HEADER FILE <lincrash.h>
  */
 
@@ -87,9 +87,10 @@ static int opt3(void) {
 }
 
 static int opt4(void) {
+	char cmd[256];
 	int opt = 0;
-	FILE *ko = fopen("modules/Makefile", "w");
-	if (ko == NULL) {
+	FILE *make = fopen("modules/Makefile", "w");
+	if (makea == NULL) {
 			perror("Error creating makefile!");
 			return 1;
 	}
@@ -120,33 +121,33 @@ static int opt4(void) {
 	printf("Building makefile...\n");
 	switch (opt) {
 		case 1:
-			fprintf(ko_file, "obj-m += ko1.o\n\n");
-			selected_ko = 1;
+			fprintf(make, "obj-m += ko1.o\n\n");
+			int sel_ko = 1;
 			break;
 		case 2:
-			fprintf(ko_file, "obj-m += ko2.o\n\n");
-			selected_ko = 2;
+			fprintf(make, "obj-m += ko2.o\n\n");
+			int sel_ko = 2;
 			break;
 		case 3:
-			fprintf(ko_file, "obj-m += ko3.o\n\n");
-			selected_ko = 3;
+			fprintf(make, "obj-m += ko3.o\n\n");
+			int sel_ko = 3;
 			break;
 		case 4:
-			fprintf(ko_file, "obj-m += ko4.o\n\n");
-			selected_ko = 4;
+			fprintf(make, "obj-m += ko4.o\n\n");
+			int sel_ko = 4;
 			break;
 		default:
 			printf("Wrong option: %i!\n", opt);
-			fclose(ko_file);
+			fclose(make);
 			return 1;
 	}
-	fprintf(ko, "KDIR := /lib/modules/$(shell uname -r)/build\n");
-	fprintf(ko, "all:\n");
-	fprintf(ko, "\tmake -C $(KDIR) M=$(PWD) modules\n");
-	fprintf(ko, "clean:\n");
-	fprintf(ko, "\tmake -C $(KDIR) M=$(PWD) clean\n");
-	fclose(ko);
-	snprintf(cmd, sizeof(cmd), "sudo insmod modules/ko%i.ko", selected_ko);
+	fprintf(make, "KDIR := /lib/modules/$(shell uname -r)/build\n");
+	fprintf(make, "all:\n");
+	fprintf(make, "\tmake -C $(KDIR) M=$(PWD) modules\n");
+	fprintf(make, "clean:\n");
+	fprintf(make, "\tmake -C $(KDIR) M=$(PWD) clean\n");
+	fclose(make);
+	snprintf(cmd, sizeof(cmd), "sudo insmod modules/ko%i.ko", sel_ko);
 	system(cmd);
 	return 0;
 }
