@@ -152,3 +152,5 @@ static int opt4(void) {
 	system(cmd);
 	return 0;
 }
+
+#endif
