@@ -89,8 +89,9 @@ static int opt3(void) {
 static int opt4(void) {
 	char cmd[256];
 	int opt = 0;
+	int sel_ko = 0;
 	FILE *make = fopen("modules/Makefile", "w");
-	if (makea == NULL) {
+	if (make == NULL) {
 			perror("Error creating makefile!");
 			return 1;
 	}
@@ -122,19 +123,19 @@ static int opt4(void) {
 	switch (opt) {
 		case 1:
 			fprintf(make, "obj-m += ko1.o\n\n");
-			int sel_ko = 1;
+			sel_ko = 1;
 			break;
 		case 2:
 			fprintf(make, "obj-m += ko2.o\n\n");
-			int sel_ko = 2;
+			sel_ko = 2;
 			break;
 		case 3:
 			fprintf(make, "obj-m += ko3.o\n\n");
-			int sel_ko = 3;
+			sel_ko = 3;
 			break;
 		case 4:
 			fprintf(make, "obj-m += ko4.o\n\n");
-			int sel_ko = 4;
+			sel_ko = 4;
 			break;
 		default:
 			printf("Wrong option: %i!\n", opt);
