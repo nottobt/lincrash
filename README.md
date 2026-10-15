@@ -1,6 +1,5 @@
 # LinCrash (Linux Crash Simulation Utility)
 
-> **Version:** `1.0.0b`
 ---
 
 ## 📌 Overview
