@@ -3,7 +3,7 @@
 
 /*
  * LinCrash (Short for Linux Crash)
- * Ver. 1.0.1b (Major 0, Minor 0, Patch 1)
+ * Ver. 1.1.0b (Major 1, Minor 1, Patch 0, beta)
  * MAIN C FILE <lincrash.c>
  */
 
@@ -38,26 +38,31 @@ int main() {
     int choice = 0;
     system("clear");
     printf("Welcome to LinCrash %s!\n", ver);
+    if (DEBUG_MODE == 1) {
+        printf("You're in DEBUG mode. (Your version of Lincrash was compiled with debug mode)\n");
+    }
     printf("You have 4 options:\n");
     printf("The options are:\n");
     for (int i = 1; i <= 4; i++) {
         switch (i) {
             case 1:
-                printf("1: MCE hardware corruption\n");
+                printf("1: MCE hardware corruption\n [User-Kernel space]\n");
                 break;
             case 2:
-                printf("2: General Protection Fault (#GP)\n");
+                printf("2: General Protection Fault (#GP) [User space]\n");
                 break;
             case 3:
-                printf("3: Null Pointer Dereference / Segmentation fault\n");
+                printf("3: Null Pointer Dereference / Segmentation fault [User space]\n");
                 break;
             case 4:
-                printf("4: Kernel-level errors (%i choices)\n", krnlch);
+                printf("4: Kernel-level errors (%i choices) [Kernel space]\n", krnlch);
                 break;
         }
         printf("Press enter to continue...\n");
         getchar();
+	system("clear");
     }
+    printf("Choice? ");
     scanf("%i", &choice);
     ch(choice);
     return 0;

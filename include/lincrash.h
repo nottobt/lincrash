@@ -3,7 +3,7 @@
 
 /*
  * LinCrash (Short for Linux Crash)
- * Ver. 1.0.1b (Major 0, Minor 0, Patch 1, beta)
+ * Ver. 1.1.0b (Major 1, Minor 1, Patch 0, beta)
  * HEADER FILE <lincrash.h>
  */
 
@@ -18,14 +18,14 @@
 
 // General defines
 #define EFI_SB_VAR "/sys/firmware/efi/efivars/SecureBoot-8be4df61-93ca-11d2-aa0d-00e098032b8c"
-#define ver "Version 1.0.0b"
+#define ver "Version 1.1.0b"
 #define krnlch 4
 
 // Modes (Will be used with cmake/gcc)
 #ifdef DEBUG
-	#define DEBUG_MODE "1"
+	#define DEBUG_MODE 1
 #else
-	#define DEBUG_MODE "0"
+	#define DEBUG_MODE 0
 #endif
 
 int sbcheck(void) {
@@ -102,10 +102,10 @@ static int opt4(void) {
 	switch (status) {
 		case 1:
 			printf("Secure Boot is ENABLED.\n");
+			return 0;
 			break;
 		case 0:
 			printf("Secure Boot is DISABLED.\n");
-			return 12;
 			break;
 		default:
 			printf("Could not determine Secure Boot state (Non-UEFI system or insufficient permissions).\n");
@@ -117,7 +117,7 @@ static int opt4(void) {
 	printf("Option 2: Trigger a Kernel Bug [Function BUG()]\n");
 	printf("Option 3: Trigger a Kernel Oops [Function DIE()]\n");
 	printf("Option 4: Trigger a Kernel Panic [Function panic()]\n");
-	printf("Choose one:\n");
+	printf("Choose one: ");
 	scanf("%i", &opt);
 	printf("Building makefile...\n");
 	switch (opt) {
@@ -144,10 +144,11 @@ static int opt4(void) {
 	}
 	fprintf(make, "KDIR := /lib/modules/$(shell uname -r)/build\n");
 	fprintf(make, "all:\n");
-	fprintf(make, "\tmake -C $(KDIR) M=$(PWD) modules\n");
+	fprintf(make, "\tmake -C $(KDIR) M=$(PWD)/modules modules\n");
 	fprintf(make, "clean:\n");
-	fprintf(make, "\tmake -C $(KDIR) M=$(PWD) clean\n");
+	fprintf(make, "\tmake -C $(KDIR) M=$(PWD)/modules clean\n");
 	fclose(make);
+	system("make -C modules");
 	snprintf(cmd, sizeof(cmd), "sudo insmod modules/ko%i.ko", sel_ko);
 	system(cmd);
 	return 0;
