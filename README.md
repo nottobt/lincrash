@@ -11,7 +11,15 @@
 ## ⚠️ Disclaimer
 
 > **WARNING:**  
-> Running **LinCrash**—especially Option 4—will destabilise, crash, or panic your operating system kernel. Unsaved files WILL be lost (if you haven't saved your files), and the author and developers of this program are not responsible for the instability and panics caused. (Check the GPL license clause for more info)
+> ## ⚠️ WARNING: SYSTEM INSTABILITY AND DATA LOSS
+
+> Running **LinCrash**, particularly Option 4, may destabilize, crash, or panic your operating system's kernel.
+
+> **Unsaved data may be lost.** Some operations may cause system-wide disruption or require a reboot.
+
+> Run LinCrash only in a disposable virtual machine or other isolated test environment. Do not run it on a production system or a machine containing important data.
+
+> The author and contributors provide this software without warranty, subject to the terms of the GNU General Public License, version 2.0 only (GPL-2.0-only). They disclaim liability to the extent permitted by applicable law. See the accompanying `LICENSE` file for the complete license terms.
 
 ---
 
