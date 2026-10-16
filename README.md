@@ -8,10 +8,7 @@
 
 ---
 
-## ⚠️ Disclaimer
-
-> **WARNING:**  
-> ## ⚠️ WARNING: SYSTEM INSTABILITY AND DATA LOSS
+> ## ⚠️ DISCLAIMER: SYSTEM INSTABILITY AND DATA LOSS
 
 > Running **LinCrash**, particularly Option 4, may destabilize, crash, or panic your operating system's kernel.
 
