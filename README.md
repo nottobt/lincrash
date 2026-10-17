@@ -44,9 +44,11 @@ Compile the executable.
 ```bash
 git clone https://github.com/nottobt/lincrash.git
 cd lincrash
-gcc lincrash.c -I. -o lincrash
+gcc lincrash.c -O3 -I. -o lincrash
 ```
-
+There are multiple flags for gcc.
+   -DDEBUG - Enters the program in debug mode.
+   -DPROT - Protected mode - refuses to execute anything and exits.
 Run this with root privileges (required for madvise and several memory-editing/allocating tools)
 ```bash
 sudo ./lincrash
